@@ -13,6 +13,28 @@ Stack<T>::Stack() //constructor
 }
 
 template <typename T>
+Stack<T>::Stack(const Stack& orig)
+{
+  Node* temp = orig.m_top;
+  recursiveCopy(temp, *this);
+}
+
+template <typename T>
+Node* Stack<T>::recursiveCopy(Node* temp, Stack& copy)
+{
+  if (temp == nullptr)
+  {
+    return nullptr;
+  }
+  else
+  {
+    recursiveCopy(temp->getNext(), copy);
+    copy.push( temp->getEntry() );
+    return temp;
+  }
+}
+
+template <typename T>
 Stack<T>::~Stack()
 {
   while (!isEmpty())
