@@ -18,7 +18,11 @@ class Stack : public StackInterface<T>
     Node<T>* m_top;
   public:
     Stack();
-
+    
+    Stack(const Stack& orig);
+	
+    Node* recursiveCopy(Node* temp, Stack& copy);
+	
     /** Virtual destructor allows concrete implementations to clean up
     heap memory when the Stack is discarded. */
     ~Stack();
